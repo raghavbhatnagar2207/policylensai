@@ -38,7 +38,7 @@ def test_signup_and_login(client):
     assert res_login.status_code == 200
     
     data = res_login.get_json()
-    assert "token" in data
+    assert "access_token" in data
     assert data["user"]["role"] == "Citizen"
 
 def test_nlp_complaint(client):
@@ -48,7 +48,7 @@ def test_nlp_complaint(client):
         "name": "Mr Angry", "email": "angry@ai.com", "password": "123", "role": "Citizen"
     })
     auth = client.post("/api/login", json={"email": "angry@ai.com", "password": "123"}).get_json()
-    token = auth["token"]
+    token = auth["access_token"]
 
     # Send an extremely angry simulated complaint
     res_complaint = client.post("/api/complaints", json={
