@@ -30,7 +30,7 @@ jobs:
         python -m textblob.download_corpora
         
         # Run tests
-        pytest tests/
+        python -m pytest tests/
         
     - name: Test Docker Compose Production Architecture Build
       run: |
